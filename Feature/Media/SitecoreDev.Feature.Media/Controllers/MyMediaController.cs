@@ -19,8 +19,8 @@ namespace SitecoreDev.Feature.Media.Controllers
     public ViewResult HeroSlider()
     {
       var viewModel = new HeroSliderViewModel();
-      if (!String.IsNullOrEmpty(
-        RenderingContext.Current.Rendering.DataSource))
+
+      if (!String.IsNullOrEmpty(RenderingContext.Current.Rendering.DataSource))
       {
         var contentItem = _repository.GetItem(
           RenderingContext.Current.Rendering.DataSource);
