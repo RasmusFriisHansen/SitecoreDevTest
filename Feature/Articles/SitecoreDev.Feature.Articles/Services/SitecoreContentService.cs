@@ -1,18 +1,26 @@
 ﻿using SitecoreDev.Feature.Articles.Models;
-using SitecoreDev.Foundation.Repository.Content;
-
+using SitecoreDev.Feature.Articles.Repositories;
 namespace SitecoreDev.Feature.Articles.Services
 {
   public class SitecoreContentService : IContentService
   {
-    private readonly IContentRepository _repository;
-    public SitecoreContentService(IContentRepository repository)
+    private readonly IArticlesRepository _repository;
+    public SitecoreContentService()
     {
-      _repository = repository;
+      _repository = new SitecoreArticlesRepository();
     }
     public IArticle GetArticleContent(string contentGuid)
     {
-      return _repository.GetContentItem<IArticle>(contentGuid);
+      Article article = null;
+      var item = _repository.GetArticleContent(contentGuid);
+      if (item != null)
+      {
+        article = new Article();
+        article.Id = item.ID.ToString();
+        article.Title = item.Fields["Title"]?.Value;
+        article.Body = item.Fields["Body"]?.Value;
+      }
+      return article;
     }
   }
 }
