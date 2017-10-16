@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SitecoreDev.Foundation.Model
+namespace SitecoreDev.Feature.Articles.Models
 {
-  public interface ICmsEntity
+  public interface IHandleOffensiveWords
   {
-    Guid Id { get; }
+    string Handle(string text);
   }
 }

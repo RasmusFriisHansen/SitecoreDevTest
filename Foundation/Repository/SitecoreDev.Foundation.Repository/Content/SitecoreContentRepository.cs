@@ -2,11 +2,13 @@
 using Glass.Mapper.Sc;
 using Sitecore.Diagnostics;
 using SitecoreDev.Foundation.Model;
+
 namespace SitecoreDev.Foundation.Repository.Content
 {
   public class SitecoreContentRepository : IContentRepository
   {
     private readonly ISitecoreContext _sitecoreContext;
+
     public SitecoreContentRepository()
     {
       _sitecoreContext = new SitecoreContext();

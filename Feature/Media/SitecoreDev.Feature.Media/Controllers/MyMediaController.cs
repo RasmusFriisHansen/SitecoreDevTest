@@ -9,10 +9,10 @@ using SitecoreDev.Feature.Media.ViewModels;
 
 namespace SitecoreDev.Feature.Media.Controllers
 {
-  public class MyMediaController : Controller
+  public class MediaController : Controller
   {
     private readonly IMediaRepository _repository;
-    public MyMediaController()
+    public MediaController()
     {
       _repository = new SitecoreMediaRepository();
     }
@@ -20,7 +20,8 @@ namespace SitecoreDev.Feature.Media.Controllers
     {
       var viewModel = new HeroSliderViewModel();
 
-      if (!String.IsNullOrEmpty(RenderingContext.Current.Rendering.DataSource))
+      if (!String.IsNullOrEmpty(
+        RenderingContext.Current.Rendering.DataSource))
       {
         var contentItem = _repository.GetItem(
           RenderingContext.Current.Rendering.DataSource);
@@ -51,21 +52,20 @@ namespace SitecoreDev.Feature.Media.Controllers
   }
 }
 
-      /*
-      // Old media Controller from Chapter 4
-      public class MyMediaController : SitecoreController
-      {
-        public ViewResult HeroSlider()
-        {
-          Item contentItem = null;
-          var database = Context.Database;
-          if (database != null && !String.IsNullOrEmpty(RenderingContext.Current.Rendering.DataSource))
-          {
-            contentItem = database.GetItem(
-              new Sitecore.Data.ID(RenderingContext.Current.Rendering.DataSource));
-          }
-          return View(contentItem);
-        }
-      }
-      */
-    
+/*
+// Old media Controller from Chapter 4
+public class MyMediaController : SitecoreController
+{
+  public ViewResult HeroSlider()
+  {
+    Item contentItem = null;
+    var database = Context.Database;
+    if (database != null && !String.IsNullOrEmpty(RenderingContext.Current.Rendering.DataSource))
+    {
+      contentItem = database.GetItem(
+        new Sitecore.Data.ID(RenderingContext.Current.Rendering.DataSource));
+    }
+    return View(contentItem);
+  }
+}
+*/

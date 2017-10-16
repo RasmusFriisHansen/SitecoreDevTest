@@ -8,7 +8,7 @@ namespace SitecoreDev.Feature.Articles.Models
 {
   public interface IArticle : ICmsEntity
   {
-    string Id { get; }
+    Guid Id { get; }
     string Title { get; }
     string Body { get; }
   }

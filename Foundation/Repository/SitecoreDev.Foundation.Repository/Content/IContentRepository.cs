@@ -1,5 +1,4 @@
 ﻿using SitecoreDev.Foundation.Model;
-
 namespace SitecoreDev.Foundation.Repository.Content
 {
   public interface IContentRepository

@@ -3,9 +3,8 @@ using System.Linq;
 using System.Web.Mvc;
 using SimpleInjector;
 using SimpleInjector.Integration.Web.Mvc;
+using Sitecore.Diagnostics;
 using Sitecore.Pipelines;
-using SitecoreDev.Foundation.Ioc.Pipelines.InitializeContainer.SitecoreDev.Foundation.Ioc.Pipelines.InitializeContainer;
-
 namespace SitecoreDev.Foundation.Ioc.Pipelines.InitializeContainer
 {
   public class InitializeContainer

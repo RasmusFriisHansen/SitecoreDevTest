@@ -1,7 +1,7 @@
-﻿using SitecoreDev.Foundation.Ioc.Pipelines.InitializeContainer;
+﻿using SitecoreDev.Feature.Articles.Models;
+using SitecoreDev.Foundation.Ioc.Pipelines.InitializeContainer;
 using SitecoreDev.Feature.Articles.Repositories;
 using SitecoreDev.Feature.Articles.Services;
-using SitecoreDev.Foundation.Ioc.Pipelines.InitializeContainer.SitecoreDev.Foundation.Ioc.Pipelines.InitializeContainer;
 
 namespace SitecoreDev.Feature.Articles.Pipelines.InitializeContainer
 {
@@ -9,9 +9,10 @@ namespace SitecoreDev.Feature.Articles.Pipelines.InitializeContainer
   {
     public void Process(InitializeContainerArgs args)
     {
-      args.Container.Register<ICommentRepository,FakeBlogCommentRepository>();
+      args.Container.Register<ICommentRepository, FakeBlogCommentRepository>();
       args.Container.Register<ICommentService, BlogCommentService>();
       args.Container.Register<IContentService, SitecoreContentService>();
+      args.Container.Register<IHandleOffensiveWords, HandleOffensiveWords>();
     }
   }
 }

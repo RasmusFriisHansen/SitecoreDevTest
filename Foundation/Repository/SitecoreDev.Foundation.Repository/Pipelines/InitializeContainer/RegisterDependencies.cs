@@ -1,4 +1,4 @@
-﻿using SitecoreDev.Foundation.Ioc.Pipelines.InitializeContainer.SitecoreDev.Foundation.Ioc.Pipelines.InitializeContainer;
+﻿using SitecoreDev.Foundation.Ioc.Pipelines.InitializeContainer;
 using SitecoreDev.Foundation.Repository.Content;
 
 namespace SitecoreDev.Foundation.Repository.Pipelines.InitializeContainer
