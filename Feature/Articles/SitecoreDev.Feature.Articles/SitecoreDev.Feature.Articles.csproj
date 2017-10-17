@@ -117,10 +117,10 @@
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\BlogComment.cs" />
     <Compile Include="Models\Configuration\IArticleMap.cs" />
-    <Compile Include="Models\HandleOffensiveWords.cs" />
+    <Compile Include="Services\RemoveOffensiveWords.cs" />
     <Compile Include="Models\IArticle.cs" />
     <Compile Include="Models\IComment.cs" />
-    <Compile Include="Models\IHandleOffensiveWords.cs" />
+    <Compile Include="Services\IHandleOffensiveWords.cs" />
     <Compile Include="Pipelines\InitializeContainer\RegisterDependencies.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\FakeBlogCommentRepository.cs" />

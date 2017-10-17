@@ -12,7 +12,7 @@ namespace SitecoreDev.Feature.Articles.Pipelines.InitializeContainer
       args.Container.Register<ICommentRepository, FakeBlogCommentRepository>();
       args.Container.Register<ICommentService, BlogCommentService>();
       args.Container.Register<IContentService, SitecoreContentService>();
-      args.Container.Register<IHandleOffensiveWords, HandleOffensiveWords>();
+      args.Container.Register<IHandleOffensiveWords,RemoveOffensiveWords>();
     }
   }
 }

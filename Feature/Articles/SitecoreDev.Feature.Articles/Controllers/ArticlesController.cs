@@ -13,7 +13,7 @@ namespace SitecoreDev.Feature.Articles.Controllers
     private readonly ICommentService _commentService;
     private readonly IHandleOffensiveWords _textEditOffensiveWords;
 
-    public ArticlesController(IContentService contentService, ICommentService commentService, IHandleOffensiveWords textEditOffensiveWords)
+    public ArticlesController(IContentService contentService, ICommentService commentService, RemoveOffensiveWords textEditOffensiveWords)
     {
       _contentService = contentService ?? throw new ArgumentNullException(nameof(contentService));
       _commentService = commentService ?? throw new ArgumentNullException(nameof(commentService));
@@ -28,7 +28,7 @@ namespace SitecoreDev.Feature.Articles.Controllers
         var blogContent = _contentService.GetArticleContent(RenderingContext.Current.Rendering.DataSource);
         if (blogContent != null)
         {
-          viewModel.Title = blogContent.Title;
+          viewModel.Title = _textEditOffensiveWords.Handle(blogContent.Title); // blogContent.Title;
           viewModel.Body = _textEditOffensiveWords.Handle(blogContent.Body); //blogContent.Body;
 
           var comments = _commentService.GetComments(blogContent.Id.ToString());
@@ -39,7 +39,7 @@ namespace SitecoreDev.Feature.Articles.Controllers
               viewModel.Comments.Add(new BlogCommentViewModel()
               {
                 Name = comment.Name,
-                Comment = comment.Comment,
+                Comment = _textEditOffensiveWords.Handle(comment.Comment),
                 DatePosted = comment.DatePosted
               });
             }
