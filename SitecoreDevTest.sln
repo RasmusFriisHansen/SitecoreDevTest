@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Feature", "Feature", "{03AF4105-CC90-4B5E-BF84-6ED97D25AEC6}"
 EndProject
@@ -43,6 +43,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IoC", "IoC", "{539AE89E-A25
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreDev.Foundation.Ioc", "Foundation\IoC\SitecoreDev.Foundation.Ioc\SitecoreDev.Foundation.Ioc.csproj", "{BAE974A9-044E-4BDA-9A14-97C087F0EC6A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SitecoreDev", "SitecoreDev", "{CA2B4F3F-2F4F-417C-B570-F54EDDFEC23B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitecoreDev.Website", "Project\SitecoreDev\SitecoreDev.Website\SitecoreDev.Website.csproj", "{FE303C04-0DDE-45AD-ABDB-138A174DF81B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +85,10 @@ Global
 		{BAE974A9-044E-4BDA-9A14-97C087F0EC6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAE974A9-044E-4BDA-9A14-97C087F0EC6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAE974A9-044E-4BDA-9A14-97C087F0EC6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE303C04-0DDE-45AD-ABDB-138A174DF81B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE303C04-0DDE-45AD-ABDB-138A174DF81B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE303C04-0DDE-45AD-ABDB-138A174DF81B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE303C04-0DDE-45AD-ABDB-138A174DF81B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,6 +110,8 @@ Global
 		{24385628-DC05-4C47-AADB-20C3DA465DD3} = {939234A2-891D-41C6-94C6-8D9D3D0E53DC}
 		{539AE89E-A250-4A05-807C-CD3B2D8E5537} = {B8F820DA-BED2-451B-853D-B5C6244613AC}
 		{BAE974A9-044E-4BDA-9A14-97C087F0EC6A} = {539AE89E-A250-4A05-807C-CD3B2D8E5537}
+		{CA2B4F3F-2F4F-417C-B570-F54EDDFEC23B} = {11CE9532-6F51-439B-8D64-EE5DE6386D6D}
+		{FE303C04-0DDE-45AD-ABDB-138A174DF81B} = {CA2B4F3F-2F4F-417C-B570-F54EDDFEC23B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {926061D0-E1DC-409B-9543-B4BA3E13D3CB}
