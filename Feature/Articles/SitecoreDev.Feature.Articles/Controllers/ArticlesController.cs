@@ -15,9 +15,9 @@ namespace SitecoreDev.Feature.Articles.Controllers
 
     public ArticlesController(IContentService contentService, ICommentService commentService, IHandleOffensiveWords textEditOffensiveWords)
     {
-      _contentService = contentService;
-      _commentService = commentService;
-      _textEditOffensiveWords = textEditOffensiveWords;
+      _contentService = contentService ?? throw new ArgumentNullException(nameof(contentService));
+      _commentService = commentService ?? throw new ArgumentNullException(nameof(commentService));
+      _textEditOffensiveWords = textEditOffensiveWords ?? throw new ArgumentNullException(nameof(textEditOffensiveWords));
     }
     public ViewResult BlogPost()
     {

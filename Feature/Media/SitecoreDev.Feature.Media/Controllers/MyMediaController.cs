@@ -9,10 +9,10 @@ using SitecoreDev.Feature.Media.ViewModels;
 
 namespace SitecoreDev.Feature.Media.Controllers
 {
-  public class MediaController : Controller
+  public class MyMediaController : Controller
   {
     private readonly IMediaRepository _repository;
-    public MediaController()
+    public MyMediaController()
     {
       _repository = new SitecoreMediaRepository();
     }

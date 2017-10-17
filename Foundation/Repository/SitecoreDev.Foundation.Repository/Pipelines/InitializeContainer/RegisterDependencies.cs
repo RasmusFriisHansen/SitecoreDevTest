@@ -7,8 +7,7 @@ namespace SitecoreDev.Foundation.Repository.Pipelines.InitializeContainer
   {
     public void Process(InitializeContainerArgs args)
     {
-      args.Container.Register<IContentRepository,
-        SitecoreContentRepository>();
+      args.Container.Register<IContentRepository,SitecoreContentRepository>();
     }
   }
 }
