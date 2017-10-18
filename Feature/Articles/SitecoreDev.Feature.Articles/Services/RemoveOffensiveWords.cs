@@ -10,7 +10,6 @@ namespace SitecoreDev.Feature.Articles.Models
         {
             string[] OffensiveWords = { "ass", "butt", "fuck" };
             StringBuilder builder = new StringBuilder();
-
             int length = 0;
 
             foreach (char letter in txt)
@@ -28,15 +27,12 @@ namespace SitecoreDev.Feature.Articles.Models
                         {
                             string stringSubstitude = new string('*', builder.Length);
                             txt = txt.Remove((length - (builder.Length)), builder.Length).Insert((length - (builder.Length)), stringSubstitude);
-                            Console.WriteLine(txt);
                         }
                     }
-
                     builder.Clear();
                 }
                 length++;
             }
-
             return txt;
         }
     }

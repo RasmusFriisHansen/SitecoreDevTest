@@ -1,22 +1,81 @@
 ﻿@model SitecoreDev.Feature.Media.ViewModels.HeroSliderViewModel
 @if (Model.HasImages)
 {
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      @for (int i = 0; i < Model.ImageCount; i++)
-      {
-        <li data-target="#myCarousel" data-slide-to="@i"
-            class="@(Model.HeroImages[i].IsActive ? "active" : "")"></li>
-      }
-    </ol>
-    <div class="carousel-inner" role="listbox">
-      @foreach (var image in Model.HeroImages)
-      {
-        <div class="item @(image.IsActive ? "active" : "")">
-          <img src="@image.MediaUrl" style="width:1920px;"
-               alt="@image.AltText" />
+    if (Model.IsInExperienceEditorMode)
+    {
+        <style>
+            .imageContainer {
+                float: left;
+                min-height: 100px;
+                width: 500px;
+                background-color: #808080;
+                margin: 10px;
+                position: relative;
+            }
+
+                .imageContainer img {
+                    height: 200px;
+                    width: 500px;
+                }
+
+            .editButton {
+                position: absolute;
+                bottom: 15px;
+                left: 15px;
+            }
+
+            .carousel-inner img {
+                height: 768px;
+                width: 1920px;
+            }
+        </style>
+        <div>
+            @foreach (var image in Model.HeroImages)
+            {
+                <div class="item imageContainer">
+                    <img src="@image.MediaUrl" alt="@image.AltText" />
+                    <!-- This button opens the Field Editor dialog to edit the field
+                    specified in our Edit Hero Image command -->
+                    <a href="#" class="btn btn-default editButton" onclick="javascript:Sitecore.PageModes.PageEditor.postRequest('webedit:fieldeditor(id=@(image.Id),fields=Image,command={F46C93D8-9841-4794-BB63-439F55228288})')">
+                        Edit Image
+                    </a>
+                </div>
+            }
         </div>
-      }
-    </div>
-  </div>
+        <div style="clear:both;">
+            <!-- This button calls the webedit:new command to add a
+            new Item to the content tree -->
+            <a href="#" class="btn btn-default" onclick="javascript:Sitecore.PageModes.PageEditor.postRequest('webedit:new(id=@(Model.ParentGuid))')">
+                Add new image
+            </a>
+        </div>
+    }
+    else
+    {
+
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                @for (int i = 0; i < Model.ImageCount; i++)
+                {
+                    <li data-target="#myCarousel" data-slide-to="@i" class="@(Model.HeroImages[i].IsActive ? "active" : "")"></li>
+                }
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                @foreach (var image in Model.HeroImages)
+                {
+                    <div class="item @(image.IsActive ? "active" : "")">
+                        <img style="height:768px; width:1920px;" src="@image.MediaUrl" alt="@image.AltText" />
+                    </div>
+                }
+            </div>
+        </div>
+        if (Model.IsSliderIntervalSet)
+        {
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $("#myCarousel").carousel({ interval: @(Model.SlideInterval),});
+                });
+            </script>
+        }
+    }
 }

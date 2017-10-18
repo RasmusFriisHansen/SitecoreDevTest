@@ -6,50 +6,53 @@ using Sitecore.Mvc.Presentation;
 using Sitecore.Resources.Media;
 using SitecoreDev.Feature.Media.Repositories;
 using SitecoreDev.Feature.Media.ViewModels;
+using SitecoreDev.Foundation.Repository.Context;
+using Glass.Mapper.Sc;
+using SitecoreDev.Feature.Media.Services;
+using System.Linq;
 
 namespace SitecoreDev.Feature.Media.Controllers
 {
-  public class MyMediaController : Controller
-  {
-    private readonly IMediaRepository _repository;
-    public MyMediaController()
+    public class MyMediaController : Controller
     {
-      _repository = new SitecoreMediaRepository();
-    }
-    public ViewResult HeroSlider()
-    {
-      var viewModel = new HeroSliderViewModel();
-
-      if (!String.IsNullOrEmpty(
-        RenderingContext.Current.Rendering.DataSource))
-      {
-        var contentItem = _repository.GetItem(
-          RenderingContext.Current.Rendering.DataSource);
-        if (contentItem != null)
+        private readonly IMediaContentService _mediaContentService;
+        private readonly IContextWrapper _contextWrapper;
+        private readonly IGlassHtml _glassHtml;
+        public MyMediaController(IContextWrapper contextWrapper, IMediaContentService mediaContentService)
         {
-          var heroImagesField = new MultilistField(
-            contentItem.Fields["Hero Images"]);
-          if (heroImagesField != null)
-          {
-            var items = heroImagesField.GetItems();
-            var itemCounter = 0;
-            foreach (var item in items)
-            {
-              var mediaItem = (MediaItem)item;
-              viewModel.HeroImages.Add(new HeroSliderImageViewModel()
-              {
-                MediaUrl = MediaManager.GetMediaUrl(mediaItem),
-                AltText = mediaItem.Alt,
-                IsActive = itemCounter == 0
-              });
-              itemCounter++;
-            }
-          }
+            _contextWrapper = contextWrapper;
+            _mediaContentService = mediaContentService;
         }
-      }
-      return View(viewModel);
+        public ViewResult HeroSlider()
+        {
+            var viewModel = new HeroSliderViewModel();
+            if (!String.IsNullOrEmpty(RenderingContext.Current.Rendering.DataSource))
+            {
+                var contentItem = _mediaContentService.GetHeroSliderContent(RenderingContext.Current.Rendering.DataSource);
+                foreach (var slide in contentItem?.Slides)
+                {
+                    viewModel.HeroImages.Add(new HeroSliderImageViewModel()
+                    {
+                        Id = slide.Id.ToString(),
+                        MediaUrl = slide.Image?.Src,
+                        AltText = slide.Image?.Alt
+                    });
+                }
+
+                var firstItem = viewModel.HeroImages.FirstOrDefault();
+                firstItem.IsActive = true;
+                viewModel.ParentGuid = contentItem.Id.ToString();
+            }
+            var parameterValue = _contextWrapper.GetParameterValue("Slide Interval in Milliseconds");
+
+            int interval = 0;
+            if (int.TryParse(parameterValue, out interval))
+                viewModel.SlideInterval = interval;
+
+            viewModel.IsInExperienceEditorMode = _contextWrapper.IsExperienceEditor;
+            return View(viewModel);
+        }
     }
-  }
 }
 
 /*
